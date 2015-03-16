@@ -9,3 +9,13 @@ source bashbooster-0.3beta/bashbooster.sh
 
 
 bb-apt-install nginx
+
+bb-event-on "nginx-updated" "on-nginx-updated"
+on-nginx-updated() {
+    service nginx restart
+}
+
+bb-sync-file \
+    /etc/nginx/sites-available/default \
+    conf/nginx-default-site \
+    nginx-updated
