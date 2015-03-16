@@ -5,5 +5,6 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu/trusty32"
+  config.vm.provision :shell, inline: "/vagrant/provision.sh"
   config.vm.network :forwarded_port, host: 8080, guest: 80
 end
